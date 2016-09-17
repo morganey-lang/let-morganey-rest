@@ -9,9 +9,9 @@ jquery-console](https://github.com/chrisdone/jquery-console).
 
 (in lexicographical order)
 
-- @keddelzz
-- @kuchenkruste
-- @rexim
+- [keddelzz](https://github.com/keddelzz)
+- [kuchenkruste](https://github.com/kuchenkruste)
+- [rexim](https://github.com/rexim)
 
 ## License
 
