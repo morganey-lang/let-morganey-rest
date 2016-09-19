@@ -8,7 +8,6 @@ lazy val http4sVersion = "0.14.6a"
 lazy val mgnVersion    = "0.0.1-SNAPSHOT"
 lazy val scalaV        = "2.11.8"
 lazy val slf4jVersion  = "1.6.4"
-lazy val twirlVersion  = "1.2.0"
 
 lazy val letMorganeyRestSettings = Seq(
   version := "0.0.1-SNAPSHOT",
@@ -16,7 +15,6 @@ lazy val letMorganeyRestSettings = Seq(
   name := "let-morganey-rest",
 
   libraryDependencies ++= Seq(
-    "com.typesafe.play" %% "twirl-api"           % twirlVersion,
     "com.h2database"     % "h2"                  % h2Version,
     "me.rexim"          %% "morganey"            % mgnVersion,
     "me.rexim"          %% "morganey-kernel"     % mgnVersion,
@@ -36,5 +34,4 @@ lazy val letMorganeyRestSettings = Seq(
 // ==================== PROJECTS ====================
 
 lazy val proj = (project in file(".")).
-  settings(letMorganeyRestSettings: _*).
-  enablePlugins(SbtTwirl)
+  settings(letMorganeyRestSettings: _*)

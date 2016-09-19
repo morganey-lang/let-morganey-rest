@@ -139,9 +139,12 @@ object TryMorganey extends ServerApp {
   val service = HttpService {
 
     case req @ GET -> Root =>
+      def index = StaticFile.fromFile(new File(assetDirectory, "index.html"), Some(req))
+        .fold(NotFound())(Task.now)
+
       sidOf(req).attempt flatMap {
-        case \/-(None)    => Ok(html.index())
-        case \/-(Some(x)) => Ok(html.index()).putHeaders(`Set-Cookie`(sidCookie(x)))
+        case \/-(None)    => index
+        case \/-(Some(x)) => index.putHeaders(`Set-Cookie`(sidCookie(x)))
         case -\/(e)       => BadRequest(e.getMessage)
       }
 
