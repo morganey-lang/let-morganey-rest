@@ -5,7 +5,7 @@ import java.security.SecureRandom
 import java.time.Instant
 
 import doobie.util.transactor.DriverManagerTransactor
-import me.rexim.morganey.ReplAutocompletion
+import me.rexim.morganey.{Commands, ReplAutocompletion}
 import me.rexim.morganey.ast._
 import me.rexim.morganey.interpreter.{MorganeyRepl, ReplContext, ReplResult}
 import me.rexim.morganey.module.ModuleFinder
@@ -102,14 +102,26 @@ object TryMorganey extends ServerApp {
       updater.flatMap(_ => result)
     }
 
+    def evalHelper(context: ReplContext) = {
+      val computation = MorganeyRepl.evalLine(context, elem.term)
+      for {
+        evalResult <- taskFromComputation(computation).timed(evaluationTimeout).attempt
+        response   <- evalResult.fold(t => Task.now(MgnResponse.error(t.getMessage)),
+                        replResultToResponse(context, _))
+      } yield response
+    }
+
     for {
-      context     <- replContext(session)
-      computation =  MorganeyRepl.evalLine(context, elem.term)
-      evalResult  <- taskFromComputation(computation).timed(evaluationTimeout).attempt
-      response    <- evalResult.fold(t => Task.now(MgnResponse.error(t.getMessage)),
-                       replResultToResponse(context, _))
+      context  <- replContext(session)
+      response <- Commands.parseCommand(elem.term.trim) collect {
+                    case (cmd, _) if !isCommandAllowed(cmd) =>
+                      Task.now(MgnResponse.error(s"Command `$cmd` is not available in the online REPL!"))
+                  } getOrElse evalHelper(context)
     } yield response
   }
+
+  private def isCommandAllowed(command: String): Boolean =
+    command != "exit"
 
   private def autocomplete(req: Request, session: Session, elem: Autocomplete): Task[MgnResponse] =
     for {
