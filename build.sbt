@@ -34,5 +34,4 @@ lazy val letMorganeyRestSettings = Seq(
 // ==================== PROJECTS ====================
 
 lazy val proj = (project in file(".")).
-  settings(letMorganeyRestSettings: _*).
-  enablePlugins(SbtTwirl)
+  settings(letMorganeyRestSettings: _*)
