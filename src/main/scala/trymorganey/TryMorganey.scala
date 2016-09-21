@@ -173,11 +173,15 @@ object TryMorganey extends ServerApp {
 
   }
 
-  override def server(args: List[String]): Task[Server] = {
-    BlazeBuilder
-      .bindLocal(8080)
-      .mountService(service, "/")
-      .start
-  }
+  private def startServer = BlazeBuilder
+    .bindLocal(8080)
+    .mountService(service, "/")
+    .start
+
+  override def server(args: List[String]): Task[Server] =
+    for {
+      _      <- createTable
+      server <- startServer
+    } yield server
 
 }
