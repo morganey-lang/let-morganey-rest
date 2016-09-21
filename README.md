@@ -14,7 +14,7 @@ Then go back to Let Morganey rest folder and
 
     $ sbt run
 
-## Contributers
+## Contributors
 
 (in lexicographical order)
 
