@@ -1,6 +1,6 @@
 version: '{build}'
 install:
-  - cmd: choco install sbt --version 0.13.12
+  - cmd: choco install sbt --version 0.13.9
   - cmd: set PATH=C:\Program Files (x86)\sbt\bin;%PATH%
 build_script:
   - sbt clean compile
