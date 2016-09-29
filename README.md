@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/morganey-lang/let-morganey-rest.svg?branch=master)](https://travis-ci.org/morganey-lang/let-morganey-rest)
+[![Build status](https://ci.appveyor.com/api/projects/status/7aa9jdpockgsuvmx/branch/master?svg=true)](https://ci.appveyor.com/project/keddelzz/let-morganey-rest/branch/master)
 
 # Let Morganey rest
 
