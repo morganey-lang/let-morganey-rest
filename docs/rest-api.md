@@ -1,7 +1,6 @@
 
 ## Rest-API
 
---
 
 #### /
 **Method**: GET  
@@ -13,13 +12,13 @@
 #### /evaluate
 **Method**: POST  
 **Description**: Evaluates a lambda term, which has to be provided as a json object in the body of the POST request. The json object has to have the form: 
-```json
+```
 {
     term : String
 }
 ```
 **Response**: JSON-object of the form:
-```json
+```
 { 
     error    : Boolean,
     messages : [String]
@@ -32,19 +31,17 @@ If `error` is true, an error occured while parsing the term. In this case `messa
 #### /autocomplete
 **Method**: POST  
 **Description**: Autocomplete a term, which was typed in partially. The term has to be provided as a json object in the body of the POST request. It has to have the form:
-```json
+```
 {
     line : String
 }
 ```
 **Response**: JSON-object of the form 
-```json
+```
 { 
     error    : Boolean,
     messages : [String]
 }
 ```
 If `error` is true, an error occured while parsing the term. In this case `messages` contains at least one error message. If `error` is false, `messages` contains autocompletion proposals.  
-
---
 
