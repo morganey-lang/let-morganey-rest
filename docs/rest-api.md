@@ -36,7 +36,7 @@ If `error` is true, an error occured while parsing the term. In this case `messa
     line : String
 }
 ```
-**Response**: JSON-object of the form 
+**Response**: JSON-object of the form:
 ```
 { 
     error    : Boolean,
