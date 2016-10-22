@@ -16,6 +16,11 @@ Then go back to Let Morganey rest folder and
 
     $ sbt run
 
+## Usage
+
+In this repository you can also find a [**documentation** of the
+REST-API of `let-morganey-rest`](docs/rest-api.md).
+
 ## Contributors
 
 (in lexicographical order)

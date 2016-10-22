@@ -1,6 +1,11 @@
 
 # Created by https://www.gitignore.io/api/windows,intellij,sbt,scala,java,eclipse
 
+*~
+#*
+*#
+.#*
+
 ### Windows ###
 # Windows image file caches
 Thumbs.db
@@ -10,7 +15,7 @@ ehthumbs.db
 Desktop.ini
 
 # Recycle Bin used on file shares
-$RECYCLE.BIN/
+$RECYCLE.BIN/x
 
 # Windows Installer files
 *.cab
